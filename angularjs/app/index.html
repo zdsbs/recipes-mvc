@@ -9,9 +9,10 @@
   <script src="js/controllers.js"></script>
 </head>
 <body ng-controller="RecipeCtrl">
-
 	<ul>
-		<li ng-repeat="recipe in recipes">{{recipe.name}}</li>
+		<li ng-repeat="recipe in recipes">{{recipe.name}}
+			<a href="#" ng-click="delete(recipe)"><i class="icon-remove-sign"></i></a>
+		</li>
 	</ul>
 
 	<form ng-submit="addRecipe()">

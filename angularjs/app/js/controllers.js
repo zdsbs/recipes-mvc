@@ -13,5 +13,15 @@ function RecipeCtrl($scope) {
 		$scope.newRecipeName = '';
 	};
 
+	$scope.delete = function(toDelete) {
+		var oldRecipes = $scope.recipes;
+		$scope.recipes = [];
+		angular.forEach(oldRecipes,function(recipe){
+			if(recipe.name != toDelete.name) {
+				$scope.recipes.push(recipe);
+			}
+		});
+	};
+
 
 }

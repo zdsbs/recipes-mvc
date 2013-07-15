@@ -6,10 +6,13 @@
   <link rel="stylesheet" href="css/app.css">
   <link rel="stylesheet" href="css/bootstrap.css">
   <script src="lib/angular/angular.js"></script>
+  <script src="js/controllers.js"></script>
 </head>
-<body>
+<body ng-controller="RecipeCtrl">
 
-  <p>Nothing here {{'yet' + '!'}}</p>
+	<ul>
+		<li ng-repeat="recipe in recipes">{{recipe.name}}</li>
+	</ul>
 
 </body>
 </html>

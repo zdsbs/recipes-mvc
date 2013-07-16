@@ -19,6 +19,7 @@ angular.module('app',[]).
 	config(['$routeProvider',function($routeProvider){
 		$routeProvider.
 			when('/',{controller:RecipeCtrl, templateUrl:'list.html'}).
-			when('/new',{controller:NewRecipeCtrl, templateUrl:'new.html'}).
+			when('/new',{controller:NewRecipeCtrl, templateUrl:'details.html'}).
+			when('/edit/:recipeName',{controller:EditRecipeCtrl, templateUrl:'details.html'}).
 			otherwise({redirectTo:'/'});
 	}]);

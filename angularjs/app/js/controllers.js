@@ -26,15 +26,37 @@ function RecipeCtrl($scope,recipeStorage) {
 }
 
 function NewRecipeCtrl($scope, $location, $timeout,recipeStorage) {
-	$scope.newRecipe = {name:"",steps:[],ingredients:[]}
+	$scope.recipe = {name:"",steps:[],ingredients:[]}
 	$scope.save = function() {
 		var recipes = recipeStorage.get();
-		recipes.push($scope.newRecipe);
+		recipes.push($scope.recipe);
 		recipeStorage.put(recipes);
 		$timeout(function() {$location.path("/");});
 	}
 
 	$scope.addStep = function() {
-		$scope.newRecipe.steps.push({step:""});
+		$scope.recipe.steps.push({step:""});
+	}
+}
+
+function findRecipe(recipes,name) {
+	for(var i = 0; i < recipes.length; i++) {
+		if(recipes[i].name == name) {
+			 return recipes[i];
+		}
+	}
+}
+
+function EditRecipeCtrl($scope, $routeParams, $location, $timeout,recipeStorage) {
+	var recipes = recipeStorage.get();
+	$scope.recipe = findRecipe(recipes,$routeParams.recipeName);
+
+	$scope.save = function() {
+		recipeStorage.put(recipes);
+		$timeout(function() {$location.path("/");});
+	}
+
+	$scope.addStep = function() {
+		$scope.recipe.steps.push({step:""});
 	}
 }

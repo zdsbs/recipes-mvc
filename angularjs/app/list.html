@@ -1,6 +1,7 @@
 <ul>
 		<li ng-repeat="recipe in recipes">{{recipe.name}}
 			<a href="#" ng-click="delete(recipe)"><i class="icon-remove-sign"></i></a>
+			<a href="#/edit/{{recipe.name}}" ><i class="icon-pencil"></i></a>
 		</li>
 	</ul>
 

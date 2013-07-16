@@ -1,20 +1,17 @@
 <p>What's cookin'</p>
 
 <form name="add-recipe">
-	Name: <input type="text" ng-model="newRecipe.name"> <br>
-	Ingredients: <br>
+	Name: <input type="text" ng-model="recipe.name"> <br>
+	Steps: <br>
 
 	<ul>
-		<li ng-repeat="step in newRecipe.steps">
+		<li ng-repeat="step in recipe.steps">
 			<input type="text"  ng-model="step.step">
 		</li>
 	</ul>
 
-
-
 	<a ng-click="addStep()"><i class="icon-plus-sign"></i></a>
-<br><br>
-
+	<br>
 	<input type="submit" ng-click="save()" class="btn-primary">
 
 

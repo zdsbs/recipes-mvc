@@ -1,12 +1,13 @@
 'use strict';
 
-/* Controllers */
-function RecipeCtrl($scope) {
 
-	$scope.recipes = [
-		{name:"ricenbeans",ingredients: ["beans","rice"], instructions: ["mix","boil"]},
-		{name:"pasta",ingredients: ["pasta","sauce"], instructions: ["boid","mix"]},
-	];
+/* Controllers */
+function RecipeCtrl($scope,recipeStorage) {
+	$scope.recipes = recipeStorage.get();
+
+	$scope.$watch('recipes',function(){
+		recipeStorage.put($scope.recipes);
+	},true);
 
 	$scope.addRecipe = function() {
 		$scope.recipes.push({name:$scope.newRecipeName});
@@ -22,6 +23,14 @@ function RecipeCtrl($scope) {
 			}
 		});
 	};
+}
 
+function NewRecipeCtrl($scope, $location, $timeout,recipeStorage) {
 
+	$scope.save = function() {
+		var recipes = recipeStorage.get();
+		recipes.push({name:$scope.newRecipeName});
+		recipeStorage.put(recipes);
+		$timeout(function() {$location.path("/");});
+	}
 }

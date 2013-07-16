@@ -26,11 +26,15 @@ function RecipeCtrl($scope,recipeStorage) {
 }
 
 function NewRecipeCtrl($scope, $location, $timeout,recipeStorage) {
-
+	$scope.newRecipe = {name:"",steps:[],ingredients:[]}
 	$scope.save = function() {
 		var recipes = recipeStorage.get();
-		recipes.push({name:$scope.newRecipeName});
+		recipes.push($scope.newRecipe);
 		recipeStorage.put(recipes);
 		$timeout(function() {$location.path("/");});
+	}
+
+	$scope.addStep = function() {
+		$scope.newRecipe.steps.push({step:""});
 	}
 }

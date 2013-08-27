@@ -22,4 +22,14 @@ angular.module('app',[]).
 			when('/new',{controller:NewRecipeCtrl, templateUrl:'details.html'}).
 			when('/edit/:recipeName',{controller:EditRecipeCtrl, templateUrl:'details.html'}).
 			otherwise({redirectTo:'/'});
-	}]);
+	}])
+	.directive('steps', function() {
+  	 return {
+      restrict: 'E',
+      template: '<ul>' +
+                  '<li ng-repeat="step in recipe.steps">' +
+                    '<input type="text"  ng-model="step.step">' +
+                  '</li>' +
+                '</ul>',
+    replace:true,
+	}});
